@@ -1,14 +1,16 @@
 import React from 'react'
 import {Col,Button,Form,Row} from "react-bootstrap";
+import { useSelector } from 'react-redux';
 import "./MessageForm.css";
 
 export default function MessageForm() {
     function handleSubmit(e){
          e.preventDefault();
     }
+    const user = useSelector((state) => state.user);
   return (
     <>
-        <div className='messages-output'></div>
+        <div className='messages-output'>{!user && <div className='alert alert-danger'>Please Login</div>}</div>
         <Form onSubmit={handleSubmit}>
             <Row>
                 <Col md={11}>
