@@ -6,15 +6,14 @@ import {LinkContainer} from 'react-router-bootstrap';
 import logo from '../assets/logo.png';
 
 function Navigation(){
-  const user = useSelector((state)=> state.user);
-  const [logoutUser]= useLogoutUserMutation();
-  async function handleLogout(e){
-        e.presventDefault();
-        await logoutUser(user);
-
-        window.location.replace("/");
+  const user = useSelector((state) => state.user);
+  const [logoutUser] = useLogoutUserMutation();
+  async function handleLogout(e) {
+      e.preventDefault();
+      await logoutUser(user);
+      // redirect to home page
+      window.location.replace("/");
   }
-
     return (
         <Navbar bg="light" expand="lg">
           <Container>
@@ -48,9 +47,11 @@ function Navigation(){
                   <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
 
                   <NavDropdown.Item>
-                     <Button variant="danger" onClick={handleLogout}>Logout</Button>
-                  </NavDropdown.Item>
-                </NavDropdown>
+                                    <Button variant="danger" onClick={handleLogout}>
+                                        Logout
+                                    </Button>
+                                </NavDropdown.Item>
+                            </NavDropdown>
               )}
               </Nav>
             </Navbar.Collapse>
